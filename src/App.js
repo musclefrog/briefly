@@ -1,20 +1,35 @@
+import { useState } from 'react';
+import CategorySelect from './components/CategorySelect'
+import NewsView from './components/NewsView'
 import './App.css';
 
 function App() {
-  return (
-    <div className='App'>
-      <header className='app-header'>
-        <h1>Briefly</h1>
-      </header>
+  const [selectedCategory, setSelectedCategory] = useState('');
+  const [isNewsView, setIsNewsView] = useState(false);
 
-      <main className='app-main'>
-        <p>관심사를 선택해 주세요!</p>
-        {/* 여기에 관심사 버튼, 뉴스 리스트 컴포넌트 들어갈 예정 */}
+  return (
+    <div className="App">
+      <header className="app-header">briefly</header>
+
+      <main className="app-main">
+        {!isNewsView ? (
+          <CategorySelect
+            onSelect={(category) => {
+              setSelectedCategory(category);
+              setIsNewsView(true);
+            }}
+          />
+        ) : (
+          <NewsView
+            category={selectedCategory}
+            onChangeCategory={(newsCategory) =>
+              setSelectedCategory(newsCategory)
+            }
+          />
+        )}
       </main>
 
-      <footer className='app-footer'>
-        <p>뉴스 서비스</p>
-      </footer>
+      <footer className="app-footer">© 2025 briefly</footer>
     </div>
   );
 }
