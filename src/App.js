@@ -1,35 +1,40 @@
 import { useState } from 'react';
-import CategorySelect from './components/CategorySelect'
-import NewsView from './components/NewsView'
+import CategorySelect from './components/CategorySelect';
+import NewsList from './components/NewsList';
+import Footer from './components/Footer';
 import './App.css';
 
 function App() {
   const [selectedCategory, setSelectedCategory] = useState('');
-  const [isNewsView, setIsNewsView] = useState(false);
+  const [screen, setScreen] = useState('home'); // 'home' or 'list'
+
+  const handleCategorySelect = (category) => {
+    setSelectedCategory(category);
+    setScreen('list');
+  }
+
+  const handleGoHome = () => {
+    setScreen('home');
+    setSelectedCategory('');
+  }
 
   return (
     <div className="App">
-      <header className="app-header">briefly</header>
+      <header className="app-header">news buddy🧚🏻</header>
 
       <main className="app-main">
-        {!isNewsView ? (
-          <CategorySelect
-            onSelect={(category) => {
-              setSelectedCategory(category);
-              setIsNewsView(true);
-            }}
-          />
-        ) : (
-          <NewsView
+        {screen === 'home' && (
+          <CategorySelect onSelect={handleCategorySelect} />
+        )}
+        {screen === 'list' && (
+          <NewsList
             category={selectedCategory}
-            onChangeCategory={(newsCategory) =>
-              setSelectedCategory(newsCategory)
-            }
+            onChangeCategory={handleCategorySelect}
           />
         )}
       </main>
 
-      <footer className="app-footer">© 2025 briefly</footer>
+      <Footer onHomeClick={handleGoHome} />
     </div>
   );
 }

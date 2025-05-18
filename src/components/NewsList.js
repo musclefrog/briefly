@@ -1,7 +1,6 @@
 const categories = ["경제", "정치", "사회", "IT", "스포츠"];
 
-function NewsView({ category, onChangeCategory }) {
-    console.log('카테고리', category);
+function NewsList({ category, onChangeCategory }) {
     // 더미 뉴스 (추후 fetch로 교체 가능)
     const dummyNews = Array.from({ length: 5 }, (_, i) => `${category} 뉴스 ${i + 1}`);
 
@@ -32,4 +31,4 @@ function NewsView({ category, onChangeCategory }) {
     );
 }
 
-export default NewsView;
+export default NewsList;
