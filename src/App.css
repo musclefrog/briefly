@@ -13,6 +13,7 @@ body {
 }
 
 .App {
+  position: relative; /* 요약 버튼이 이 안에서 움직이게 만듦 */
   width: 100%;
   max-width: 480px;
   min-height: 100vh;
@@ -48,13 +49,6 @@ body {
   margin-top: 1rem;
 }
 
-/* .category-selector-bar {
-  display: flex;
-  gap: 0.3rem;
-  margin-bottom: 1rem;
-  flex-wrap: wrap;
-} */
-
 .category-button, 
 .category-small-button {
   padding: 0.6rem 1rem;
@@ -81,4 +75,86 @@ body {
   margin-bottom: 0.5rem;
   background-color: #f8f8f8;
   border-radius: 8px;
+}
+
+.news-detail-container {
+  position: relative;
+  padding-bottom: 6rem; /* 요약 박스 뜰 공간 확보 */
+}
+
+.back-button {
+  margin-bottom: 1rem;
+  font-size: 1rem;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.full-article {
+  line-height: 1.6;
+}
+
+.preview-text {
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;  /* 2줄만 보이게 */
+  -webkit-box-orient: vertical;
+  text-overflow: ellipsis;
+  line-height: 1.4;
+  max-height: 2.8em;
+  color: #444;
+}
+
+/* 요약 플로팅 버튼 */
+.ai-float-button {
+  position: absolute; /* 부모인 .App 기준으로 배치됨 */
+  bottom: 2rem;
+  right: 1rem;
+  background-color: #5e9eff;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  padding: 1rem;
+  font-size: 1.2rem;
+  cursor: pointer;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+  z-index: 1000;
+}
+
+/* 요약 결과 박스 */
+.summary-box {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: white;
+  padding: 1rem;
+  box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
+  border-top: 1px solid #eee;
+  z-index: 999;
+  animation: slideUp 0.3s ease-in-out;
+}
+
+/* 요약 결과 박스 */
+.summary-box {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: white;
+  padding: 1rem;
+  box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
+  border-top: 1px solid #eee;
+  z-index: 999;
+  animation: slideUp 0.3s ease-in-out;
+}
+
+/* 슬라이드 업 애니메이션 */
+@keyframes slideUp {
+  from {
+    transform: translateY(100%);
+  }
+  to {
+    transform: translateY(0);
+  }
 }
